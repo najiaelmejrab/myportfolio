@@ -111,8 +111,39 @@ function updateActiveNavLink() {
     });
 }
 
-// Call function on page load
+// Hamburger menu toggle
+function initHamburgerMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on nav links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu on window resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Call functions on page load
 updateActiveNavLink();
+initHamburgerMenu();
 
 // Add scroll animation for elements
 function animateOnScroll() {
@@ -152,41 +183,7 @@ document.head.appendChild(style);
 // Call animation function
 animateOnScroll();
 
-// ===== HAMBURGER MENU TOGGLE =====
 document.addEventListener("DOMContentLoaded", function () {
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.getElementById("nav-menu");
-    
-    if (hamburger && navMenu) {
-        // Toggle menu
-        hamburger.addEventListener("click", function () {
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
-        });
-        
-        // Close menu when clicking on nav links
-        const navLinks = navMenu.querySelectorAll("a");
-        navLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                hamburger.classList.remove("active");
-                navMenu.classList.remove("active");
-            });
-        });
-        
-        // Close menu on window resize (above mobile breakpoint)
-        let resizeTimer;
-        window.addEventListener("resize", () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                if (window.innerWidth > 768) {
-                    hamburger.classList.remove("active");
-                    navMenu.classList.remove("active");
-                }
-            }, 250);
-        });
-    }
-
-    // Portfolio filter (existing duplicate handler)
     const filterButtons = document.querySelectorAll(".filter-btn");
     const portfolioItems = document.querySelectorAll(".portfolio-item");
     const projectGroups = document.querySelectorAll(".project-group");
@@ -216,4 +213,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
