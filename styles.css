@@ -22,6 +22,81 @@
     --transition: all 0.3s ease;
 }
 
+html, body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+}
+
+a:hover {
+    border-bottom: 2px solid var(--text-color);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.navbar {
+    background-color: var(--accent-color);
+    border-bottom: 2px solid var(--text-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-brand .site-logo {
+    height: 50px;
+    width: auto;
+}
+
+.nav-brand h1 {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    font-weight: 700;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: var(--text-color);
+    font-weight: 600;
+    position: relative;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    border-bottom: 2px solid var(--text-color);
+}
+
 /* ============================================
    BUTTONS
    ============================================ */
@@ -82,11 +157,13 @@
 }
 
 .hero-content h2 {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 .hero-subtitle {
@@ -507,7 +584,6 @@
     border-left: 4px solid var(--text-color);
     margin-bottom: 1rem;
     border: 2px solid var(--text-color);
-    border-left: 4px solid var(--text-color);
 }
 
 .education-card h4 {
@@ -581,7 +657,6 @@
     margin-bottom: 1rem;
     border-left: 4px solid var(--text-color);
     border: 2px solid var(--text-color);
-    border-left: 4px solid var(--text-color);
 }
 
 /* ============================================
@@ -695,37 +770,6 @@
     box-shadow: 5px 5px 0px var(--text-color);
 }
 
-.portfolio-item.flyer-item {
-    background-color: var(--accent-color);
-    border: 2px solid var(--text-color);
-    overflow: hidden;
-    transition: var(--transition);
-}
-
-.portfolio-item.flyer-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 5px 5px 0px var(--text-color);
-}
-
-.portfolio-item.flyer-item .portfolio-image {
-    height: auto;
-    background-color: var(--light-bg);
-    border-bottom: 2px solid var(--text-color);
-}
-
-.portfolio-item.flyer-item .portfolio-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.portfolio-item.flyer-item .portfolio-category {
-    padding: 1.5rem 1.5rem 0.75rem;
-    margin: 0;
-    border-bottom: none;
-}
-
-
 .portfolio-item h3 {
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
     font-weight: 700;
@@ -748,25 +792,11 @@
     border-bottom: 2px solid var(--text-color);
 }
 
-.portfolio-item.flyer-item .portfolio-category {
-    padding: 1.5rem 1.5rem 0.5rem;
-}
-
-.portfolio-item.flyer-item .view-btn {
-    margin: 0 1.5rem 1.5rem;
-    display: block;
-    width: fit-content;
-    margin-left: auto;
-}
-
-
 .portfolio-item .btn-small {
     display: block;
     width: fit-content;
     margin: 0.5rem 1.5rem 1.5rem;
 }
-
-
 
 .portfolio-item.hide {
     display: none;
@@ -1027,16 +1057,16 @@
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (Simplified - Pre-Mobile-Fix)
    ============================================ */
 
 @media (max-width: 768px) {
-    .nav-menu {
-        gap: 1rem;
+    .navbar .container {
+        padding: 1rem 15px;
     }
 
-    .nav-brand h1 {
-        font-size: 1.3rem;
+    .nav-menu {
+        gap: 1.5rem;
     }
 
     .hero-content h2 {
@@ -1061,6 +1091,7 @@
     .blog-grid,
     .info-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .contact-wrapper {
@@ -1070,34 +1101,9 @@
     .project-nav {
         flex-direction: column;
     }
-
-    .featured-projects h2,
-    .skills-section h2,
-    .achievements-section h2 {
-        font-size: 2rem;
-    }
-
-    .portfolio-filters {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .filter-btn {
-        margin: 0.3rem;
-    }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 10px;
-    }
-
-    .nav-menu {
-        gap: 0.5rem;
-        font-size: 0.8rem;
-    }
-
     .hero {
         padding: 4rem 0;
     }
@@ -1106,43 +1112,8 @@
         font-size: 1.8rem;
     }
 
-    .hero-subtitle {
-        font-size: 0.95rem;
-    }
-
     .btn {
         padding: 0.7rem 1.2rem;
-        font-size: 0.8rem;
-    }
-
-    .featured-projects h2 {
-        font-size: 1.6rem;
     }
 }
 
-.view-btn {
-    display: inline-block;
-    margin: 1rem 1.5rem 1.5rem;
-    padding: 0.6rem 1.2rem;
-    border: 2px solid var(--text-color);
-    background-color: transparent;
-    color: var(--text-color);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.8rem;
-    transition: var(--transition);
-}
-
-.view-btn:hover {
-    background-color: var(--text-color);
-    color: var(--accent-color);
-    transform: translateY(-2px);
-}
-
-.view-btn {
-    display: block;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: 1.5rem;
-}
