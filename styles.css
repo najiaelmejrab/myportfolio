@@ -1157,7 +1157,7 @@ a:hover {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 250px;
+        width: 280px;
         height: 100vh;
         background-color: var(--accent-color);
         flex-direction: column;
@@ -1170,6 +1170,7 @@ a:hover {
         z-index: 1000;
         gap: 0;
     }
+
 
     
     .nav-menu.active {
