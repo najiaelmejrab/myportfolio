@@ -59,21 +59,19 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 20px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .nav-brand .site-logo {
     height: 50px;
     width: auto;
+    max-width: 200px;
 }
 
 .nav-brand h1 {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: var(--text-color);
     font-weight: 700;
     letter-spacing: 2px;
-    white-space: nowrap;
 }
 
 .nav-menu {
@@ -157,13 +155,11 @@ a:hover {
 }
 
 .hero-content h2 {
-    font-size: 2.8rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    word-break: break-word;
-    hyphens: auto;
 }
 
 .hero-subtitle {
@@ -345,6 +341,7 @@ a:hover {
     background-color: var(--accent-color);
 }
 
+
 .achievements-section h2,
 .achievements-detail-section h2.section-title {
     font-size: 2rem;
@@ -353,6 +350,7 @@ a:hover {
     font-weight: 700;
     text-transform: uppercase;
 }
+
 
 .achievements-grid {
     display: grid;
@@ -367,6 +365,7 @@ a:hover {
     border: 2px solid var(--text-color);
     text-align: center;
 }
+
 
 .achievement-icon {
     font-size: 3rem;
@@ -420,6 +419,7 @@ a:hover {
     border-top: 3px solid var(--text-color);
 }
 
+
 .footer-content {
     display: flex;
     flex-wrap: wrap;
@@ -431,12 +431,15 @@ a:hover {
     margin-right: auto;
 }
 
+
+
 .footer-section {
     text-align: center;
     flex: 1;
     min-width: 250px;
     max-width: 350px;
 }
+
 
 .footer-section h3 {
     margin-bottom: 1rem;
@@ -577,6 +580,7 @@ a:hover {
     border-left: 4px solid var(--text-color);
     margin-bottom: 1rem;
     border: 2px solid var(--text-color);
+    border-left: 4px solid var(--text-color);
 }
 
 .education-card h4 {
@@ -650,6 +654,7 @@ a:hover {
     margin-bottom: 1rem;
     border-left: 4px solid var(--text-color);
     border: 2px solid var(--text-color);
+    border-left: 4px solid var(--text-color);
 }
 
 /* ============================================
@@ -763,6 +768,37 @@ a:hover {
     box-shadow: 5px 5px 0px var(--text-color);
 }
 
+.portfolio-item.flyer-item {
+    background-color: var(--accent-color);
+    border: 2px solid var(--text-color);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.portfolio-item.flyer-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 0px var(--text-color);
+}
+
+.portfolio-item.flyer-item .portfolio-image {
+    height: auto;
+    background-color: var(--light-bg);
+    border-bottom: 2px solid var(--text-color);
+}
+
+.portfolio-item.flyer-item .portfolio-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.portfolio-item.flyer-item .portfolio-category {
+    padding: 1.5rem 1.5rem 0.75rem;
+    margin: 0;
+    border-bottom: none;
+}
+
+
 .portfolio-item h3 {
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
     font-weight: 700;
@@ -785,11 +821,25 @@ a:hover {
     border-bottom: 2px solid var(--text-color);
 }
 
+.portfolio-item.flyer-item .portfolio-category {
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.portfolio-item.flyer-item .view-btn {
+    margin: 0 1.5rem 1.5rem;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+}
+
+
 .portfolio-item .btn-small {
     display: block;
     width: fit-content;
     margin: 0.5rem 1.5rem 1.5rem;
 }
+
+
 
 .portfolio-item.hide {
     display: none;
@@ -1050,16 +1100,16 @@ a:hover {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN (Simplified - Pre-Mobile-Fix)
+   RESPONSIVE DESIGN
    ============================================ */
 
 @media (max-width: 768px) {
-    .navbar .container {
-        padding: 1rem 15px;
+    .nav-menu {
+        gap: 1rem;
     }
 
-    .nav-menu {
-        gap: 1.5rem;
+    .nav-brand h1 {
+        font-size: 1.3rem;
     }
 
     .hero-content h2 {
@@ -1084,7 +1134,6 @@ a:hover {
     .blog-grid,
     .info-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
     }
 
     .contact-wrapper {
@@ -1094,9 +1143,34 @@ a:hover {
     .project-nav {
         flex-direction: column;
     }
+
+    .featured-projects h2,
+    .skills-section h2,
+    .achievements-section h2 {
+        font-size: 2rem;
+    }
+
+    .portfolio-filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        margin: 0.3rem;
+    }
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .nav-menu {
+        gap: 0.5rem;
+        font-size: 0.8rem;
+    }
+
     .hero {
         padding: 4rem 0;
     }
@@ -1105,8 +1179,43 @@ a:hover {
         font-size: 1.8rem;
     }
 
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
     .btn {
         padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    .featured-projects h2 {
+        font-size: 1.6rem;
     }
 }
 
+.view-btn {
+    display: inline-block;
+    margin: 1rem 1.5rem 1.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid var(--text-color);
+    background-color: transparent;
+    color: var(--text-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.view-btn:hover {
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.view-btn {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: 1.5rem;
+}
