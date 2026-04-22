@@ -1,5 +1,6 @@
-// Portfolio Filter
+// Portfolio Filter + Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', () => {
+    // Portfolio Filter
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -29,6 +30,50 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set first filter button as active on load
     if (filterBtns.length > 0) {
         filterBtns[0].classList.add('active');
+    }
+
+    // Mobile Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const menuBackdrop = document.querySelector('.menu-backdrop');
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            if (menuBackdrop) menuBackdrop.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close on nav link click
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                if (menuBackdrop) menuBackdrop.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close on backdrop click
+        if (menuBackdrop) {
+            menuBackdrop.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                menuBackdrop.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                if (menuBackdrop) menuBackdrop.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     }
 });
 
@@ -113,77 +158,6 @@ function updateActiveNavLink() {
 
 // Call function on page load
 updateActiveNavLink();
-
-// Hamburger Menu Functionality
-function initHamburgerMenu() {
-    const navbar = document.querySelector('.navbar');
-    const container = navbar.querySelector('.container');
-    const navBrand = container.querySelector('.nav-brand');
-    const navMenu = container.querySelector('.nav-menu');
-    
-    if (!navBrand || !navMenu) return;
-
-    // Remove existing hamburger if any
-    const existingHamburger = container.querySelector('.hamburger');
-    if (existingHamburger) {
-        existingHamburger.remove();
-    }
-
-    // Create hamburger button
-    const hamburger = document.createElement('button');
-    hamburger.className = 'hamburger';
-    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
-    hamburger.innerHTML = `
-        <span></span>
-        <span></span>
-        <span></span>
-    `;
-    hamburger.style.order = '3'; // Place after nav-menu in flex
-
-    // Insert hamburger at end of container (right edge)
-    container.appendChild(hamburger);
-
-    // Toggle menu function
-    function toggleMenu() {
-        hamburger.classList.toggle('open');
-        navMenu.classList.toggle('open');
-        document.body.classList.toggle('menu-open');
-    }
-
-    hamburger.addEventListener('click', toggleMenu);
-
-    // Close menu on link click
-    navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('open');
-            navMenu.classList.remove('open');
-            document.body.classList.remove('menu-open');
-        });
-    });
-
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navMenu.classList.contains('open')) {
-            toggleMenu();
-        }
-    });
-
-    // Close menu on window resize > 768px
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            if (window.innerWidth > 768) {
-                hamburger.classList.remove('open');
-                navMenu.classList.remove('open');
-                document.body.classList.remove('menu-open');
-            }
-        }, 250);
-    });
-}
-
-// Initialize hamburger menu on DOM load
-document.addEventListener('DOMContentLoaded', initHamburgerMenu);
 
 // Add scroll animation for elements
 function animateOnScroll() {
