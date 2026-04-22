@@ -22,6 +22,32 @@
     --transition: all 0.3s ease;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.navbar .container {
+    flex-wrap: wrap;
+}
+
+.nav-menu {
+    flex-wrap: wrap;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fix horizontal scroll on mobile */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 html, body {
     font-family: 'Arial', 'Helvetica', sans-serif;
     line-height: 1.6;
