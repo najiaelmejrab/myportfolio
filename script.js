@@ -157,7 +157,28 @@ if (!document.querySelector('style[data-keyframe]')) {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-    `;
-    document.head.appendChild(style);
-}
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const filter = button.getAttribute("data-filter");
 
+            // Active button
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            portfolioItems.forEach(item => {
+                const category = item.getAttribute("data-category");
+
+                if (filter === "all" || category === filter) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+
+            // Show all groups for all filters
+            projectGroups.forEach(group => {
+                group.style.display = "block";
+            });
+        });
+    });
+});
