@@ -414,7 +414,7 @@ a:hover {
 .footer {
     background-color: var(--primary-color);
     color: var(--accent-color);
-    margin-top: 5rem;
+    margin-top: 1rem;
     padding: 3rem 0 2rem;
     border-top: 3px solid var(--text-color);
 }
@@ -830,6 +830,10 @@ a:hover {
     display: block;
     width: fit-content;
     margin-left: auto;
+}
+
+.portfolio-section .project-group:last-of-type {
+    margin-bottom: 0;
 }
 
 
