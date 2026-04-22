@@ -152,11 +152,12 @@ document.head.appendChild(style);
 // Call animation function
 animateOnScroll();
 
+// Consolidated Portfolio Filter (removed duplicate)
 document.addEventListener("DOMContentLoaded", function () {
     const filterButtons = document.querySelectorAll(".filter-btn");
     const portfolioItems = document.querySelectorAll(".portfolio-item");
-    const projectGroups = document.querySelectorAll(".project-group");
 
+    // Unified filter logic using style.display for consistency
     filterButtons.forEach(button => {
         button.addEventListener("click", () => {
             const filter = button.getAttribute("data-filter");
@@ -167,18 +168,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
             portfolioItems.forEach(item => {
                 const category = item.getAttribute("data-category");
-
                 if (filter === "all" || category === filter) {
                     item.style.display = "block";
+                    item.classList.remove("hide"); // Fallback cleanup
                 } else {
                     item.style.display = "none";
+                    item.classList.add("hide");
                 }
-            });
-
-            // Show all groups for all filters
-            projectGroups.forEach(group => {
-                group.style.display = "block";
             });
         });
     });
+
+    // Set first as active
+    if (filterButtons.length > 0) {
+        filterButtons[0].classList.add("active");
+    }
 });
+
+
+// Hamburger Menu Toggle
+document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    const navLinks = document.querySelectorAll(".nav-menu a");
+    const body = document.body;
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener("click", function() {
+            navMenu.classList.toggle("active");
+            hamburger.classList.toggle("active");
+            body.classList.toggle("menu-open");
+        });
+
+        // Close menu when clicking on nav link
+        navLinks.forEach(link => {
+            link.addEventListener("click", function() {
+                navMenu.classList.remove("active");
+                hamburger.classList.remove("active");
+                body.classList.remove("menu-open");
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function(e) {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                navMenu.classList.remove("active");
+                hamburger.classList.remove("active");
+                body.classList.remove("menu-open");
+            }
+        });
+    }
+});
+
