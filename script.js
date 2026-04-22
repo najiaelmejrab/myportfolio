@@ -1,6 +1,5 @@
-// Portfolio Filter + Mobile Menu Toggle
+// Portfolio Filter
 document.addEventListener('DOMContentLoaded', () => {
-    // Portfolio Filter
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -30,50 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set first filter button as active on load
     if (filterBtns.length > 0) {
         filterBtns[0].classList.add('active');
-    }
-
-    // Mobile Hamburger Menu
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const menuBackdrop = document.querySelector('.menu-backdrop');
-
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (menuBackdrop) menuBackdrop.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        });
-
-        // Close on nav link click
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                if (menuBackdrop) menuBackdrop.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // Close on backdrop click
-        if (menuBackdrop) {
-            menuBackdrop.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                menuBackdrop.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                if (menuBackdrop) menuBackdrop.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
     }
 });
 

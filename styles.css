@@ -414,7 +414,7 @@ a:hover {
 .footer {
     background-color: var(--primary-color);
     color: var(--accent-color);
-    margin-top: 5rem;
+    margin-top: 1rem;
     padding: 3rem 0 2rem;
     border-top: 3px solid var(--text-color);
 }
@@ -729,24 +729,12 @@ a:hover {
     color: var(--accent-color);
 }
 
-/* Hide OJT Projects title when Software filter active */
-.portfolio-filters .filter-btn[data-filter="software"].active ~ .portfolio-section .project-group:nth-of-type(2) .project-group-title {
-    display: none !important;
-}
-.portfolio-filters .filter-btn[data-filter="software"] ~ .portfolio-section .portfolio-item:not([data-category="software"]) {
-    display: none !important;
-}
-
 /* ============================================
    PORTFOLIO GRID
    ============================================ */
 
 .portfolio-section {
-    padding: 1.5rem 0 0.5rem;
-}
-
-.portfolio-section .project-group:last-child {
-    margin-bottom: 0.5rem;
+    padding: 3rem 0;
 }
 
 .project-group {
@@ -842,6 +830,10 @@ a:hover {
     display: block;
     width: fit-content;
     margin-left: auto;
+}
+
+.portfolio-section .project-group:last-of-type {
+    margin-bottom: 0;
 }
 
 
@@ -1115,119 +1107,11 @@ a:hover {
    RESPONSIVE DESIGN
    ============================================ */
 
-/* Hamburger Menu Button */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    z-index: 1001;
-    position: relative;
-}
-
-.hamburger span {
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-color);
-    border-radius: 10px;
-    transition: var(--transition);
-    transform-origin: 1px;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-    transform: translateX(20px);
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* Mobile Menu Styles */
 @media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .navbar .container {
-        position: relative;
-    }
-
     .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background-color: var(--accent-color);
-        flex-direction: column;
-        align-items: center;
-        padding: 100px 20px 20px;
-        gap: 0;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.3);
-        transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        z-index: 999;
+        gap: 1rem;
     }
 
-    .nav-menu.active {
-        right: 0;
-    }
-
-    .nav-menu li {
-        opacity: 0;
-        transform: translateX(20px);
-        animation: slideIn 0.3s ease forwards;
-    }
-
-    .nav-menu li:nth-child(1) { animation-delay: 0.1s; }
-    .nav-menu li:nth-child(2) { animation-delay: 0.2s; }
-    .nav-menu li:nth-child(3) { animation-delay: 0.3s; }
-    .nav-menu li:nth-child(4) { animation-delay: 0.4s; }
-
-    .nav-menu a {
-        display: block;
-        padding: 1rem 0;
-        font-size: 1.1rem;
-        border-bottom: none;
-    }
-
-    @keyframes slideIn {
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    /* Backdrop */
-    .menu-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 998;
-    }
-
-    .menu-backdrop.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Existing mobile styles */
     .nav-brand h1 {
         font-size: 1.3rem;
     }
@@ -1287,9 +1171,8 @@ a:hover {
     }
 
     .nav-menu {
-        width: 90%;
-        max-width: none;
-        right: -100%;
+        gap: 0.5rem;
+        font-size: 0.8rem;
     }
 
     .hero {
@@ -1311,15 +1194,6 @@ a:hover {
 
     .featured-projects h2 {
         font-size: 1.6rem;
-    }
-}
-
-@media (min-width: 769px) {
-    .nav-menu {
-        display: flex !important;
-    }
-    .hamburger {
-        display: none !important;
     }
 }
 
