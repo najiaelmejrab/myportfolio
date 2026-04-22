@@ -114,6 +114,77 @@ function updateActiveNavLink() {
 // Call function on page load
 updateActiveNavLink();
 
+// Hamburger Menu Functionality
+function initHamburgerMenu() {
+    const navbar = document.querySelector('.navbar');
+    const container = navbar.querySelector('.container');
+    const navBrand = container.querySelector('.nav-brand');
+    const navMenu = container.querySelector('.nav-menu');
+    
+    if (!navBrand || !navMenu) return;
+
+    // Remove existing hamburger if any
+    const existingHamburger = container.querySelector('.hamburger');
+    if (existingHamburger) {
+        existingHamburger.remove();
+    }
+
+    // Create hamburger button
+    const hamburger = document.createElement('button');
+    hamburger.className = 'hamburger';
+    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
+    hamburger.innerHTML = `
+        <span></span>
+        <span></span>
+        <span></span>
+    `;
+    hamburger.style.order = '3'; // Place after nav-menu in flex
+
+    // Insert hamburger at end of container (right edge)
+    container.appendChild(hamburger);
+
+    // Toggle menu function
+    function toggleMenu() {
+        hamburger.classList.toggle('open');
+        navMenu.classList.toggle('open');
+        document.body.classList.toggle('menu-open');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Close menu on link click
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            navMenu.classList.remove('open');
+            document.body.classList.remove('menu-open');
+        });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+            toggleMenu();
+        }
+    });
+
+    // Close menu on window resize > 768px
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('open');
+                navMenu.classList.remove('open');
+                document.body.classList.remove('menu-open');
+            }
+        }, 250);
+    });
+}
+
+// Initialize hamburger menu on DOM load
+document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+
 // Add scroll animation for elements
 function animateOnScroll() {
     const elements = document.querySelectorAll('.project-card, .skill-card, .achievement-card, .blog-post');
