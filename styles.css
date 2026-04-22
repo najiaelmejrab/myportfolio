@@ -22,62 +22,27 @@
     --transition: all 0.3s ease;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
     width: 100%;
-}
-
-.navbar .container {
-    flex-wrap: wrap;
-}
-
-.nav-menu {
-    flex-wrap: wrap;
-}
-
-img, video {
     max-width: 100%;
-    height: auto;
-}
-
-/* Fix horizontal scroll on mobile */
-html, body {
     overflow-x: hidden;
-    width: 100%;
-}
-
-html, body {
-    font-family: 'Arial', 'Helvetica', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--accent-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: var(--transition);
-    border-bottom: 2px solid transparent;
-}
-
-a:hover {
-    border-bottom: 2px solid var(--text-color);
 }
 
 /* ============================================
-   NAVIGATION
-   ============================================ */
+   CONTAINER
+============================================ */
 
-.navbar {
-    background-color: var(--accent-color);
-    border-bottom: 2px solid var(--text-color);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: var(--transition);
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .navbar .container {
@@ -85,19 +50,7 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 20px;
-}
-
-.nav-brand .site-logo {
-    height: 50px;
-    width: auto;
-    max-width: 200px;
-}
-
-.nav-brand h1 {
-    font-size: 1.8rem;
-    color: var(--text-color);
-    font-weight: 700;
-    letter-spacing: 2px;
+    flex-wrap: wrap;
 }
 
 .nav-menu {
@@ -105,20 +58,50 @@ a:hover {
     list-style: none;
     gap: 2.5rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-.nav-menu a {
-    color: var(--text-color);
-    font-weight: 600;
-    position: relative;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-    border-bottom: 2px solid var(--text-color);
+/* ============================================
+   FINAL MOBILE FIX
+============================================ */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+    }
+
+    .navbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 0 12px;
+    }
+
+    .nav-brand h1 {
+        font-size: 1.2rem;
+    }
+
 }
 
 /* ============================================
